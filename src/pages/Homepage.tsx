@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { UserContext } from "../contexts/test";
+import { UsersContext } from "../contexts/context";
 
 const Homepage = () => {
-  const userContext = useContext(UserContext);
+  const usersContext = useContext(UsersContext);
   return (
     <div>
-      {userContext?.logged ? (
+      {usersContext?.logged ? (
         <div className="text-green-800 font-black">zalogowany</div>
       ) : null}
     </div>

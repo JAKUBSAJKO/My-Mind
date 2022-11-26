@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UsersContext } from "../contexts/context";
+import useLocalStorage from "../hooks/useLocalStorage";
 import { User } from "../Interface";
 
 const SignUpForm = () => {
@@ -13,31 +14,45 @@ const SignUpForm = () => {
 
   const usersContext = useContext(UsersContext);
 
+  const [localUsers, setLocalUsers] = useLocalStorage<User[]>("localUsers", []);
+
   const onSubmit: SubmitHandler<User> = (data) => {
-    // event.preventDefault();
     usersContext?.addUser(data);
+    setLocalUsers([...localUsers, data]);
     reset();
   };
 
-  console.log(usersContext?.users);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <label className="flex flex-col">
         Imię:
-        <input type="text" {...register("name", { required: true })} />
+        <input
+          type="text"
+          autoComplete="off"
+          {...register("name", { required: true })}
+        />
       </label>
       <label className="flex flex-col">
         Nazwisko:
-        <input type="text" {...register("surname", { required: true })} />
+        <input
+          type="text"
+          autoComplete="off"
+          {...register("surname", { required: true })}
+        />
       </label>
       <label className="flex flex-col">
         Login:
-        <input type="text" {...register("login", { required: true })} />
+        <input
+          type="text"
+          autoComplete="off"
+          {...register("login", { required: true })}
+        />
       </label>
       <label className="flex flex-col">
         Hasło:
         <input
           type="password"
+          autoComplete="off"
           {...register("password", {
             required: true,
             minLength: {

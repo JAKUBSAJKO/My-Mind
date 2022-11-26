@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { UserContext } from "../contexts/test";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
 import { UsersContext } from "../contexts/context";
@@ -14,7 +13,6 @@ interface Inputs {
 const LoginForm = () => {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState<string | null>(null);
-  const userContext = useContext(UserContext);
   const usersContext = useContext(UsersContext);
   const {
     register,
@@ -30,7 +28,8 @@ const LoginForm = () => {
     if (loginExist !== undefined) {
       if (loginExist.length > 0) {
         if (loginExist[0].password === data.password) {
-          userContext?.setLogged(true);
+          usersContext?.setLogged(true);
+          usersContext?.setActiveUser(loginExist[0]);
           navigate(routes.home);
         } else {
           setLoginStatus("Błędne hasło");
@@ -46,12 +45,19 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>Login:</label>
-      <input {...register("login", { required: "Login jest wymagany" })} />
+      <input
+        type="text"
+        {...register("login", { required: "Login jest wymagany" })}
+      />
       <label>Hasło:</label>
-      <input {...register("password", { required: "Hasło jest wymagany" })} />
+      <input
+        type="password"
+        autoComplete="off"
+        {...register("password", { required: "Hasło jest wymagany" })}
+      />
       <p>{errors.login?.message}</p>
       <p>{errors.password?.message}</p>
-      <input type="submit" />
+      <input type="submit" value="Zaloguj się" />
       {<p>{loginStatus}</p>}
     </form>
   );

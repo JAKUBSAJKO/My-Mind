@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/test";
+import { UsersContext } from "../contexts/context";
 import { routes } from "../routes/routes";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const userContext = useContext(UserContext);
+  const usersContext = useContext(UsersContext);
 
   const logout = () => {
-    userContext?.setLogged(false);
+    usersContext?.setLogged(false);
+    usersContext?.setActiveUser(null);
     navigate(routes.login);
   };
 
@@ -16,18 +17,23 @@ const Navbar = () => {
     <nav className="container mx-auto px-4 py-4 border-b-2 flex items-center text-sm">
       <h1>My Auth</h1>
       <div className="grow">
-        <ul className="flex justify-center items-center gap-8">
-          <Link to={routes.home}>
-            <li>Home</li>
-          </Link>
-          <li>Content</li>
-          <li>Contact</li>
-        </ul>
+        {usersContext?.logged ? (
+          <ul className="flex justify-center items-center gap-8">
+            <Link to={routes.home}>
+              <li>Home</li>
+            </Link>
+            <li>Content</li>
+            <li>Contact</li>
+          </ul>
+        ) : null}
       </div>
       <div className="flex items-center gap-4">
-        {userContext?.logged ? (
+        {usersContext?.logged ? (
           <>
-            <div className="h-14 w-14 border-2 rounded-full"></div>
+            <div className="h-14 w-14 border-2 rounded-full flex justify-center items-center text-2xl font-bold">
+              {usersContext.activeUser?.name.slice(0, 1)}
+              {usersContext.activeUser?.surname.slice(0, 1)}
+            </div>
             <button onClick={logout}>Wyloguj</button>
           </>
         ) : (
