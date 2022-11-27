@@ -43,21 +43,28 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Login:</label>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <h1 className="text-3xl font-medium mb-8">Log in</h1>
       <input
         type="text"
         {...register("login", { required: "Login jest wymagany" })}
+        placeholder="User name"
+        className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
-      <label>Hasło:</label>
       <input
         type="password"
         autoComplete="off"
         {...register("password", { required: "Hasło jest wymagany" })}
+        placeholder="Password"
+        className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-12"
       />
       <p>{errors.login?.message}</p>
       <p>{errors.password?.message}</p>
-      <input type="submit" value="Zaloguj się" />
+      <input
+        type="submit"
+        value="Zaloguj się"
+        className="border-2 border-green-500 rounded-lg py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
+      />
       {<p>{loginStatus}</p>}
     </form>
   );
