@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -12,72 +12,78 @@ const SignUpForm = () => {
     formState: { errors },
   } = useForm<User>();
 
+  const [signUpStatus, setSignUpStatus] = useState<string | null>(null);
+
   const usersContext = useContext(UsersContext);
 
   const [localUsers, setLocalUsers] = useLocalStorage<User[]>("localUsers", []);
 
   const onSubmit: SubmitHandler<User> = (data) => {
-    usersContext?.addUser(data);
-    setLocalUsers([...localUsers, data]);
+    const usersAlreadyExist = usersContext?.users.filter(
+      (user) => user.login === data.login
+    );
+
+    if (usersAlreadyExist !== undefined) {
+      if (usersAlreadyExist?.length > 0) {
+        setSignUpStatus("Login jest już zajęty");
+      } else {
+        usersContext?.addUser(data);
+        setLocalUsers([...localUsers, data]);
+        setSignUpStatus(null);
+      }
+    }
+
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <label className="flex flex-col">
-        Imię:
-        <input
-          type="text"
-          autoComplete="off"
-          {...register("name", { required: true })}
-        />
-      </label>
-      <label className="flex flex-col">
-        Nazwisko:
-        <input
-          type="text"
-          autoComplete="off"
-          {...register("surname", { required: true })}
-        />
-      </label>
-      <label className="flex flex-col">
-        Login:
-        <input
-          type="text"
-          autoComplete="off"
-          {...register("login", { required: true })}
-        />
-      </label>
-      <label className="flex flex-col">
-        Hasło:
-        <input
-          type="password"
-          autoComplete="off"
-          {...register("password", {
-            required: true,
-            minLength: {
-              value: 4,
-              message: "Min length is 4",
-            },
-          })}
-        />
-      </label>
-      <div className="flex flex-col">
-        {errors.name && (
-          <span className="text-xs text-red-500">Podaj imię</span>
-        )}
-        {errors.surname && (
-          <span className="text-xs text-red-500">Podaj nazwisko</span>
-        )}
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <h1 className="text-xl font-medium mb-6">Sign up</h1>
+      <input
+        type="text"
+        autoComplete="off"
+        {...register("name", { required: "Podaj imię" })}
+        placeholder="Enter name"
+        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+      />
+      <input
+        type="text"
+        autoComplete="off"
+        {...register("surname", { required: "Podaj nazwisko" })}
+        placeholder="Enter surname"
+        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+      />
+      <input
+        type="text"
+        autoComplete="off"
+        {...register("login", { required: "Podaj login" })}
+        placeholder="Create login"
+        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+      />
+      <input
+        type="password"
+        autoComplete="off"
+        {...register("password", {
+          required: "Podaj hasło",
+          minLength: {
+            value: 4,
+            message: "Min length is 4",
+          },
+        })}
+        placeholder="Password"
+        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+      />
+      <div className="flex flex-col mx-4 text-red-500 text-xs">
+        <p>{errors.name?.message}</p>
+        <p>{errors.surname?.message}</p>
         <p>{errors.login?.message}</p>
-        {errors.password && (
-          <span className="text-xs text-red-500">Podaj hasło</span>
-        )}
+        <p>{errors.password?.message}</p>
+        <p className="mb-4">{signUpStatus}</p>
       </div>
       <input
         type="submit"
         value="Zarejestruj"
-        className="border-2 border-green-400 rounded-md px-4 py-2 cursor-pointer font-semibold transition-all hover:bg-green-400 hover:text-white"
+        className="w-64 border-2 border-green-500 rounded-lg py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
       />
     </form>
   );
