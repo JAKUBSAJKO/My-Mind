@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
@@ -10,7 +10,7 @@ interface Inputs {
   password: string;
 }
 
-const LoginForm = () => {
+const LoginForm: FC = () => {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState<string | null>(null);
   const usersContext = useContext(UsersContext);

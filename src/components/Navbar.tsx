@@ -1,16 +1,16 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UsersContext } from "../contexts/context";
 import { routes } from "../routes/routes";
 
-const Navbar = () => {
+const Navbar: FC = () => {
   const navigate = useNavigate();
   const usersContext = useContext(UsersContext);
 
   const logout = () => {
     usersContext?.setLogged(false);
     usersContext?.setActiveUser(null);
-    navigate(routes.login);
+    navigate(routes.start);
   };
 
   return (
