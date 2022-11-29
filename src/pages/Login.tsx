@@ -1,9 +1,10 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import { routes } from "../routes/routes";
 import loginCharacter from "../assets/images/loginCharacter.png";
 
-const Login = () => {
+const Login: FC = () => {
   return (
     <div className="w-full h-[calc(100vh-82.5px)] flex justify-center items-center px-36">
       <div className="basis-1/2 flex flex-col">

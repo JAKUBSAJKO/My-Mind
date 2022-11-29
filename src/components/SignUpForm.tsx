@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { User } from "../Interface";
 
-const SignUpForm = () => {
+const SignUpForm: FC = () => {
   const {
     register,
     handleSubmit,
