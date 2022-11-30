@@ -23,6 +23,7 @@ export interface UsersContextInterface {
   posts: Post[];
   setPosts: Dispatch<SetStateAction<Post[]>>;
   addPost: (post: Post) => void;
+  removePost: (post: Post) => void;
 }
 
 export const UsersContext = createContext<UsersContextInterface | null>(null);
@@ -68,9 +69,9 @@ export const UsersContextProvider: FC<Props> = ({ children }) => {
   );
 
   useEffect(() => {
+    setActiveUser(localActiveUser);
     setUsers([...users, ...localUsers]);
     setPosts([...posts, ...localPosts]);
-    setActiveUser(localActiveUser);
   }, []);
 
   const addUser = (user: User) => {
@@ -79,6 +80,10 @@ export const UsersContextProvider: FC<Props> = ({ children }) => {
 
   const addPost = (post: Post) => {
     setPosts((prev) => [...prev, post]);
+  };
+
+  const removePost = (post: Post) => {
+    setPosts(posts.filter((p) => p.id !== post.id));
   };
 
   const context = {
@@ -90,6 +95,7 @@ export const UsersContextProvider: FC<Props> = ({ children }) => {
     posts,
     setPosts,
     addPost,
+    removePost,
   };
   return (
     <UsersContext.Provider value={context}>{children}</UsersContext.Provider>
