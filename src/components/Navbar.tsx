@@ -28,8 +28,9 @@ const Navbar: FC = () => {
             <Link to={routes.home}>
               <li>Home</li>
             </Link>
-            <li>Content</li>
-            <li>Contact</li>
+            <Link to={routes.myProfil}>
+              <li>Mój profil</li>
+            </Link>
           </ul>
         ) : null}
       </div>

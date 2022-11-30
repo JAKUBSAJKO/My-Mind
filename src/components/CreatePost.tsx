@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineSend } from "react-icons/ai";
 import { UsersContext } from "../contexts/context";
