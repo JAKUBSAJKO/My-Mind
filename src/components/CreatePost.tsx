@@ -30,14 +30,12 @@ const CreatePost: FC = () => {
       currentDate.getMonth() + 1
     }-${currentDate.getFullYear()}`;
 
-    console.log(currentDate);
-
     const body: string = data.body;
 
     const user: User = usersContext?.activeUser!;
     const post: Post = { id, user, body, date };
-    usersContext?.addPost(id, user, data.body, "2022-12-12");
-    setLocalPosts([...localPosts, { id, user, body, date }]);
+    usersContext?.addPost(post);
+    setLocalPosts([...localPosts, post]);
     reset();
   };
 
@@ -48,9 +46,10 @@ const CreatePost: FC = () => {
     >
       <div className="flex items-center gap-2">
         <div className="w-10 h-10 border-2 bg-green-100 rounded-full flex justify-center items-center">
-          JS
+          {usersContext!.activeUser?.name.slice(0, 1)}
+          {usersContext!.activeUser?.surname.slice(0, 1)}
         </div>
-        <div>Jakub Sajko</div>
+        <div>{`${usersContext?.activeUser?.name} ${usersContext?.activeUser?.surname}`}</div>
       </div>
       <textarea
         placeholder="Podziel się myślą ze światem"

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
 import { UsersContext } from "../contexts/context";
 import { User } from "../Interface";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 interface Inputs {
   login: string;
@@ -14,12 +15,18 @@ const LoginForm: FC = () => {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState<string | null>(null);
   const usersContext = useContext(UsersContext);
+  const [localAcitveUser, setLocalAcitveUser] = useLocalStorage<User | null>(
+    "activeUser",
+    null
+  );
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const loginExist: User[] | undefined = usersContext?.users.filter(
       (user) => user.login === data.login
@@ -28,8 +35,8 @@ const LoginForm: FC = () => {
     if (loginExist !== undefined) {
       if (loginExist.length > 0) {
         if (loginExist[0].password === data.password) {
-          usersContext?.setLogged(true);
           usersContext?.setActiveUser(loginExist[0]);
+          setLocalAcitveUser(loginExist[0]);
           navigate(routes.home);
         } else {
           setLoginStatus("Błędne hasło");

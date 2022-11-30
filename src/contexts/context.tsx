@@ -18,13 +18,11 @@ export interface UsersContextInterface {
   users: User[];
   setUsers: Dispatch<SetStateAction<User[]>>;
   addUser: (user: User) => void;
-  logged: boolean;
-  setLogged: Dispatch<SetStateAction<boolean>>;
   activeUser: User | null;
   setActiveUser: Dispatch<SetStateAction<User | null>>;
   posts: Post[];
   setPosts: Dispatch<SetStateAction<Post[]>>;
-  addPost: (id: string, user: User, body: string, date: string) => void;
+  addPost: (post: Post) => void;
 }
 
 export const UsersContext = createContext<UsersContextInterface | null>(null);
@@ -60,31 +58,33 @@ export const UsersContextProvider: FC<Props> = ({ children }) => {
     },
   ]);
 
-  const [logged, setLogged] = useState<boolean>(false);
   const [activeUser, setActiveUser] = useState<User | null>(null);
 
   const [localUsers, setLocalUsers] = useLocalStorage<User[]>("localUsers", []);
   const [localPosts, setLocalPosts] = useLocalStorage<Post[]>("localPosts", []);
+  const [localActiveUser, setLocalActiveUser] = useLocalStorage<User | null>(
+    "activeUser",
+    null
+  );
 
   useEffect(() => {
     setUsers([...users, ...localUsers]);
     setPosts([...posts, ...localPosts]);
+    setActiveUser(localActiveUser);
   }, []);
 
   const addUser = (user: User) => {
     setUsers((prev) => [...prev, user]);
   };
 
-  const addPost = (id: string, user: User, body: string, date: string) => {
-    setPosts((prev) => [...prev, { id, user, body, date }]);
+  const addPost = (post: Post) => {
+    setPosts((prev) => [...prev, post]);
   };
 
   const context = {
     users,
     setUsers,
     addUser,
-    logged,
-    setLogged,
     activeUser,
     setActiveUser,
     posts,
