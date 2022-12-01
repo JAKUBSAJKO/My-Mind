@@ -39,25 +39,27 @@ const MyProfil: FC = () => {
         </h1>
       </div>
       <div className="basis-1/2 max-h-80 bg-red-300 rounded-lg p-4 flex flex-col justify-center gap-4 overflow-auto">
-        {postOfUser?.map((post) => (
-          <div key={post.id} className="border-2 rounded-md p-4">
-            <div className="flex justify-between">
-              <div className="flex items-center gap-1">
-                <WiTime4 />
-                <h2 className="text-xs font-semibold">{post.date}</h2>
+        {postOfUser
+          ?.map((post) => (
+            <div key={post.id} className="border-2 rounded-md p-4">
+              <div className="flex justify-between">
+                <div className="flex items-center gap-1">
+                  <WiTime4 />
+                  <h2 className="text-xs font-semibold">{post.date}</h2>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => updatePost(post)}>
+                    <HiPencilAlt />
+                  </button>
+                  <button onClick={() => deletePost(post)}>
+                    <MdDelete />
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-2">
-                <button onClick={() => updatePost(post)}>
-                  <HiPencilAlt />
-                </button>
-                <button onClick={() => deletePost(post)}>
-                  <MdDelete />
-                </button>
-              </div>
+              <p>{post.body}</p>
             </div>
-            <p>{post.body}</p>
-          </div>
-        ))}
+          ))
+          .reverse()}
       </div>
     </div>
   );
