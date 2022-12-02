@@ -11,3 +11,7 @@ export interface Post {
   body: string;
   date: string;
 }
+
+export interface PostProps {
+  post: Post;
+}
