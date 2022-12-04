@@ -1,10 +1,15 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useState, Dispatch, SetStateAction } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
 import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { User } from "../Interface";
 
-const SignUpForm: FC = () => {
+interface Props {
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+}
+
+const SignUpForm: FC<Props> = ({ setOpenModal }) => {
   const {
     register,
     handleSubmit,
@@ -30,6 +35,7 @@ const SignUpForm: FC = () => {
         usersContext?.addUser(data);
         setLocalUsers([...localUsers, data]);
         setSignUpStatus(null);
+        setOpenModal(true);
       }
     }
 

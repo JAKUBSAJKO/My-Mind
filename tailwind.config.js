@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         "day-bg-posts": "#E9F5E8",
         "day-bg-main-posts": "#EFEFEF",
+        "modal-overlay": "rgba(0,0,0,0.7)",
       },
       dropShadow: {
         button: "0px 4px 4px rgba(0, 0, 0, 0.25)",
