@@ -1,9 +1,11 @@
 import { FC, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { User } from "../Interface";
 import { routes } from "../routes/routes";
+import Logo from "../assets/images/logo.png";
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
@@ -20,8 +22,8 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="container mx-auto px-4 py-4 border-b-2 flex items-center text-sm">
-      <h1>My Auth</h1>
+    <nav className="container mx-auto px-4 py-4 flex items-center text-sm">
+      <img src={Logo} alt="Logo" width={56} />
       <div className="grow">
         {usersContext?.activeUser ? (
           <ul className="flex justify-center items-center gap-8">
@@ -37,32 +39,21 @@ const Navbar: FC = () => {
       <div className="flex items-center gap-4">
         {usersContext?.activeUser ? (
           <>
-            <div className="h-14 w-14 border-2 rounded-full flex justify-center items-center text-2xl font-bold">
+            <div className="h-12 w-12 border-2 border-emerald-500 rounded-full flex justify-center items-center text-lg font-bold">
               {usersContext!.activeUser?.name.slice(0, 1)}
               {usersContext!.activeUser?.surname.slice(0, 1)}
             </div>
-            <button onClick={logout}>Wyloguj</button>
+            <button className="btn-outline" onClick={logout}>
+              Wyloguj
+            </button>
           </>
         ) : (
           <>
-            <Link
-              to={routes.login}
-              className="border-2 border-emerald-400 rounded-lg px-6 py-2 font-semibold hover:bg-emerald-400 hover:text-white transition-all hover:duration-500"
-            >
-              Login
+            <Link to={routes.login} className="btn-outline">
+              Zaloguj
             </Link>
-            <Link
-              to={routes.signUp}
-              className="border-2
-                border-emerald-400
-                bg-emerald-400
-                rounded-lg
-                px-6
-                py-2
-                font-semibold
-                text-white"
-            >
-              Sign Up
+            <Link to={routes.signUp} className="btn-solid">
+              Rejestracja
             </Link>
           </>
         )}
