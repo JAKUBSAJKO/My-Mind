@@ -42,7 +42,7 @@ const CreatePost: FC = () => {
   return (
     <form
       onSubmit={handleSubmit(postHandleSubmit)}
-      className="w-full border-2 border-green-700 rounded-lg px-8 py-4 flex flex-col gap-4"
+      className="w-full border-2 border-green-500 rounded-lg px-8 py-4 flex flex-col gap-4"
     >
       <div className="flex items-center gap-2">
         <div className="w-10 h-10 border-2 bg-green-100 rounded-full flex justify-center items-center">
