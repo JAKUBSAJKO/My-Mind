@@ -41,6 +41,14 @@
   }
 }
 
+.btn-solid {
+  @apply border-2 border-emerald-400 bg-emerald-400 rounded-lg px-6 py-2 font-semibold text-white;
+}
+
+.btn-outline {
+  @apply border-2 border-emerald-400 rounded-lg px-6 py-2 font-semibold hover:bg-emerald-400 hover:text-white transition-all hover:duration-500;
+}
+
 .start-card {
   @apply w-56 h-32 border-4 border-white rounded-md flex flex-col justify-center items-center shadow-2xl;
 }

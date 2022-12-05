@@ -9,7 +9,7 @@ const Start: FC = () => {
   return (
     <div className="w-full bg-gray-200">
       <div className="w-full h-[calc(100vh-82.5px)] py-8 px-64 flex flex-col justify-center items-center">
-        <h1 className="text-3xl font-semibold mb-4">My auth</h1>
+        <h1 className="text-3xl font-semibold mb-4">My mind</h1>
         <img src={startImage} alt="" width={515} />
         <h2 className="my-4">
           Stwórz darmowe konto i dołącz do naszej społeczności
