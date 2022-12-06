@@ -8,10 +8,10 @@ import startImage from "../assets/images/startImage.png";
 const Start: FC = () => {
   return (
     <div className="w-full bg-gray-200">
-      <div className="w-full h-[calc(100vh-82.5px)] py-8 px-64 flex flex-col justify-center items-center">
+      <div className="w-full h-[calc(100vh-82.5px)] py-1 px-12 flex flex-col justify-center items-center sm:py-8 sm:px-0 sm:h-auto md:px-32 2xl:py-16">
         <h1 className="text-3xl font-semibold mb-4">My mind</h1>
-        <img src={startImage} alt="" width={515} />
-        <h2 className="my-4">
+        <img className="my-4 sm:my-0" src={startImage} alt="" width={515} />
+        <h2 className="text-center my-4">
           Stwórz darmowe konto i dołącz do naszej społeczności
         </h2>
         <div className="flex flex-col justify-center items-center cursor-pointer">
@@ -19,8 +19,8 @@ const Start: FC = () => {
           <BsArrowDownShort className="text-md" />
         </div>
       </div>
-      <div className="w-full h-64 bg-green-500 flex justify-center items-center">
-        <div className="px-32 py-8 flex gap-4">
+      <div className="w-full bg-green-500 flex justify-center items-center sm:h-64">
+        <div className="py-12 flex flex-col gap-8 sm:flex-row sm:py-8 sm:px-0 md:gap-4">
           <div className="start-card">
             <MdPersonAddAlt1 className="start-card-icon" />
             <p className="start-card-text">Stwórz konto</p>
