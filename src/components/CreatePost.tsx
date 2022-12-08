@@ -1,8 +1,9 @@
 import { FC, useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineSend } from "react-icons/ai";
-import { UsersContext } from "../contexts/context";
 import { v4 as uuidv4 } from "uuid";
+
+import { UsersContext } from "../contexts/context";
 import { Post, User } from "../Interface";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -42,10 +43,10 @@ const CreatePost: FC = () => {
   return (
     <form
       onSubmit={handleSubmit(postHandleSubmit)}
-      className="w-full border-2 border-green-500 rounded-lg px-8 py-4 flex flex-col gap-4"
+      className="w-full bg-gray-200 px-8 py-4 flex flex-col gap-4 md:shadow-lg md:rounded-lg"
     >
       <div className="flex items-center gap-2">
-        <div className="w-10 h-10 border-2 bg-green-100 rounded-full flex justify-center items-center">
+        <div className="w-10 h-10 border-2 border-gray-400 bg-green-100 rounded-full flex justify-center items-center">
           {usersContext!.activeUser?.name.slice(0, 1)}
           {usersContext!.activeUser?.surname.slice(0, 1)}
         </div>

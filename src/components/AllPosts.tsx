@@ -6,10 +6,10 @@ const AllPosts: FC<PostProps> = ({ post }) => {
   return (
     <div
       key={post.id}
-      className="w-full border-2 border-gray-500 rounded-lg p-4 flex flex-col gap-4"
+      className="w-full bg-gray-200 p-8 flex flex-col md:gap-4 md:shadow-lg md:rounded-lg md:p-4"
     >
       <div className="flex items-center">
-        <div className="w-10 h-10 border-2 border-gray-300 rounded-full flex justify-center items-center font-semibold">
+        <div className="w-10 h-10 border-2 border-gray-400 rounded-full flex justify-center items-center font-semibold">
           {post.user.name.slice(0, 1)}
           {post.user.surname.slice(0, 1)}
         </div>
@@ -27,7 +27,7 @@ const AllPosts: FC<PostProps> = ({ post }) => {
         </div>
       </div>
       <div>
-        <p>{post.body}</p>
+        <p className="mt-4">{post.body}</p>
       </div>
     </div>
   );
