@@ -17,7 +17,10 @@ const SignUp: FC = () => {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-82.5px)] flex justify-center items-center px-36">
+    <div
+      className="w-full flex flex-col justify-center items-center px-4 py-16 gap-12 sm:gap-16 md:gap-0
+    md:py-0 md:px-0 md:flex-row md:h-[calc(100vh-82.5px)] md:max-w-3xl md:mx-auto"
+    >
       <div className="basis-1/2">
         <img src={signUpCharacter} alt="Sign up character" width={512} />
       </div>
