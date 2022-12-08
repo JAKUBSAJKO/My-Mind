@@ -16,7 +16,7 @@ const Homepage: FC = () => {
 
   return (
     <div className="bg-day-bg-posts">
-      <div className="bg-day-bg-main-posts shadow-day-shadow-posts mx-64 p-16 text-sm flex flex-col justify-center items-center gap-6">
+      <div className="bg-day-bg-main-posts shadow-day-shadow-posts text-sm flex flex-col justify-center items-center py-8 gap-4 sm:max-w-screen-sm sm:mx-auto sm:gap-6 sm:p-16">
         <CreatePost />
         {usersContext?.posts.map((post) => <AllPosts post={post} />).reverse()}
       </div>
