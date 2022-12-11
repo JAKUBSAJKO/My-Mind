@@ -23,9 +23,15 @@ const MyProfil: FC = () => {
           </h1>
         </div>
         <div className="basis-2/3 h-96 bg-zinc-300 rounded-md shadow-lg p-8 flex flex-col gap-4 overflow-auto">
-          {postOfUser
-            ?.map((post) => <PostDetail key={post.id} post={post} />)
-            .reverse()}
+          {postOfUser?.length! > 0 ? (
+            postOfUser
+              ?.map((post) => <PostDetail key={post.id} post={post} />)
+              .reverse()
+          ) : (
+            <div className="w-full h-full flex justify-center items-center">
+              <h2>Jeszcze nie dodałeś posta...</h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
