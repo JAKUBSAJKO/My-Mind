@@ -17,10 +17,7 @@ const PostDetail: FC<PostProps> = ({ post }) => {
   };
 
   return (
-    <div
-      key={post.id}
-      className="border-2 border-gray-500 rounded-md p-4 shadow-lg"
-    >
+    <div className="border-2 border-gray-500 rounded-md p-4 shadow-lg">
       <div className="flex justify-between">
         <div className="flex items-center gap-1">
           <WiTime4 />
@@ -32,7 +29,7 @@ const PostDetail: FC<PostProps> = ({ post }) => {
           </button>
         </div>
       </div>
-      <p className="mt-2 text-base">{post.body}</p>
+      <p className="mt-2 text-sm sm:text-base">{post.body}</p>
     </div>
   );
 };
