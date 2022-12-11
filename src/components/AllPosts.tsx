@@ -4,10 +4,7 @@ import { MdOutlinePersonOutline, MdOutlineAccessTime } from "react-icons/md";
 
 const AllPosts: FC<PostProps> = ({ post }) => {
   return (
-    <div
-      key={post.id}
-      className="w-full bg-gray-200 p-8 flex flex-col md:gap-4 md:shadow-lg md:rounded-lg md:p-4"
-    >
+    <div className="w-full bg-gray-200 p-8 flex flex-col md:gap-4 md:shadow-lg md:rounded-lg md:p-4">
       <div className="flex items-center">
         <div className="w-10 h-10 border-2 border-gray-400 rounded-full flex justify-center items-center font-semibold">
           {post.user.name.slice(0, 1)}
