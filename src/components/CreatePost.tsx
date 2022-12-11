@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineSend } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
@@ -9,19 +9,17 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 interface Inputs {
   body: string;
-  // time: Date;
 }
 
-const CreatePost: FC = () => {
+interface Props {
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+}
+
+const CreatePost: FC<Props> = ({ setOpenModal }) => {
   const usersContext = useContext(UsersContext);
   const [localPosts, setLocalPosts] = useLocalStorage<Post[]>("localPosts", []);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<Inputs>();
+  const { register, handleSubmit, reset } = useForm<Inputs>();
 
   const postHandleSubmit: SubmitHandler<Inputs> = (data) => {
     const id = uuidv4();
@@ -37,6 +35,10 @@ const CreatePost: FC = () => {
     const post: Post = { id, user, body, date };
     usersContext?.addPost(post);
     setLocalPosts([...localPosts, post]);
+    setOpenModal(true);
+    setTimeout(() => {
+      setOpenModal(false);
+    }, 3000);
     reset();
   };
 
@@ -46,7 +48,7 @@ const CreatePost: FC = () => {
       className="w-full bg-gray-200 px-8 py-4 flex flex-col gap-4 md:shadow-lg md:rounded-lg"
     >
       <div className="flex items-center gap-2">
-        <div className="w-10 h-10 border-2 border-gray-400 bg-green-100 rounded-full flex justify-center items-center">
+        <div className="w-10 h-10 border-2 border-green-400 bg-green-400 rounded-full flex justify-center items-center font-semibold">
           {usersContext!.activeUser?.name.slice(0, 1)}
           {usersContext!.activeUser?.surname.slice(0, 1)}
         </div>
@@ -60,7 +62,6 @@ const CreatePost: FC = () => {
           maxLength: { value: 300, message: "Maksymalnie 300 znaków" },
         })}
       />
-      {/* <input type="date" {...register("time")} /> */}
       <button type="submit" className="max-w-fit self-end">
         <AiOutlineSend className="text-emerald-400 text-xl" />
       </button>
