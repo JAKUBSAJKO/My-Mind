@@ -1,5 +1,7 @@
 import { FC, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Menu } from "@headlessui/react";
+import { HiMenu } from "react-icons/hi";
 
 import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -22,9 +24,9 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="container mx-auto px-4 py-4 flex items-center text-sm">
+    <nav className="container mx-auto px-8 py-4 flex justify-between items-center text-sm">
       <img src={Logo} alt="Logo" width={56} />
-      <div className="grow">
+      <div className="hidden grow sm:block">
         {usersContext?.activeUser ? (
           <ul className="flex justify-center items-center gap-8">
             <Link to={routes.home}>
@@ -36,7 +38,7 @@ const Navbar: FC = () => {
           </ul>
         ) : null}
       </div>
-      <div className="flex items-center gap-4">
+      <div className="hidden sm:flex sm:items-center sm:gap-4">
         {usersContext?.activeUser ? (
           <>
             <div className="h-12 w-12 border-2 border-emerald-500 rounded-full flex justify-center items-center text-lg font-bold">
@@ -58,6 +60,72 @@ const Navbar: FC = () => {
           </>
         )}
       </div>
+      <Menu>
+        <Menu.Button className="sm:hidden">
+          <HiMenu className="text-2xl" />
+        </Menu.Button>
+        <Menu.Items className="absolute top-0 right-0 bottom-0 left-0 p-16 bg-green-200 flex flex-col justify-between">
+          <Menu.Item>
+            {({ close, active }) => (
+              <>
+                {usersContext?.activeUser ? (
+                  <ul className="flex flex-col justify-center items-center gap-6 mt-8 text-lg uppercase">
+                    <Link to={routes.home} onClick={close}>
+                      <li>Home</li>
+                    </Link>
+                    <Link
+                      to={routes.myProfil}
+                      onClick={close}
+                      className="text-center"
+                    >
+                      <li>Mój profil</li>
+                    </Link>
+                  </ul>
+                ) : null}
+              </>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ close }) => (
+              <>
+                {usersContext?.activeUser ? (
+                  <div className="flex justify-center items-center">
+                    <button
+                      className="btn-mobile"
+                      onClick={() => {
+                        logout();
+                        close();
+                      }}
+                    >
+                      Wyloguj
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-full h-full flex justify-center items-center">
+                    <div className="flex flex-col justify-center items-center gap-8 text-lg">
+                      <Link
+                        to={routes.login}
+                        onClick={close}
+                        className="btn-mobile"
+                      >
+                        Zaloguj
+                      </Link>
+                      <p className="text-xs font-normal">LUB</p>
+                      <Link
+                        to={routes.signUp}
+                        onClick={close}
+                        className="btn-mobile"
+                      >
+                        Rejestracja
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+          </Menu.Item>
+        </Menu.Items>
+      </Menu>
     </nav>
   );
 };
