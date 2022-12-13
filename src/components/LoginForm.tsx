@@ -53,18 +53,18 @@ const LoginForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <h1 className="text-3xl font-medium mb-8">Log in</h1>
+      <h1 className="text-3xl font-medium mb-8">Zaloguj się</h1>
       <input
         type="text"
         {...register("login", { required: "Login jest wymagany" })}
-        placeholder="User name"
+        placeholder="Nazwa użytkownika"
         className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="password"
         autoComplete="off"
         {...register("password", { required: "Hasło jest wymagany" })}
-        placeholder="Password"
+        placeholder="Hasło"
         className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-12"
       />
       <p>{errors.login?.message}</p>

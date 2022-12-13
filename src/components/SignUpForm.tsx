@@ -44,26 +44,26 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <h1 className="text-xl font-medium mb-6">Sign up</h1>
+      <h1 className="text-xl font-medium mb-6">Zarejestruj się</h1>
       <input
         type="text"
         autoComplete="off"
         {...register("name", { required: "Podaj imię" })}
-        placeholder="Enter name"
+        placeholder="Podaj imię"
         className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="text"
         autoComplete="off"
         {...register("surname", { required: "Podaj nazwisko" })}
-        placeholder="Enter surname"
+        placeholder="Podaj nazwisko"
         className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="text"
         autoComplete="off"
         {...register("login", { required: "Podaj login" })}
-        placeholder="Create login"
+        placeholder="Stwórz login"
         className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
@@ -73,10 +73,10 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
           required: "Podaj hasło",
           minLength: {
             value: 4,
-            message: "Min length is 4",
+            message: "Minimalna długość hasła wynosi 4",
           },
         })}
-        placeholder="Password"
+        placeholder="Podaj hasło"
         className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <div className="flex flex-col mx-4 text-red-500 text-xs">
@@ -88,7 +88,7 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
       </div>
       <input
         type="submit"
-        value="Zarejestruj"
+        value="Zarejestruj się"
         className="w-64 border-2 border-green-500 rounded-lg py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
       />
     </form>
