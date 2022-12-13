@@ -25,7 +25,7 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="container mx-auto px-8 py-4 flex justify-between items-center text-sm">
+    <nav className="w-full px-8 py-4 flex justify-between items-center text-sm shadow-md">
       <img src={Logo} alt="Logo" width={56} />
       <div className="hidden grow sm:block">
         {usersContext?.activeUser ? (
