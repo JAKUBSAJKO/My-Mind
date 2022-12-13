@@ -20,6 +20,7 @@ const Navbar: FC = () => {
   const logout = () => {
     usersContext?.setActiveUser(null);
     setLocalActiveUser(null);
+    localStorage.removeItem("session");
     navigate(routes.start);
   };
 

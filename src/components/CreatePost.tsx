@@ -47,13 +47,20 @@ const CreatePost: FC<Props> = ({ setOpenModal }) => {
       onSubmit={handleSubmit(postHandleSubmit)}
       className="w-full bg-gray-200 px-8 py-4 flex flex-col gap-4 md:shadow-lg md:rounded-lg"
     >
-      <div className="flex items-center gap-2">
-        <div className="w-10 h-10 border-2 border-green-400 bg-green-400 rounded-full flex justify-center items-center font-semibold">
-          {usersContext!.activeUser?.name.slice(0, 1)}
-          {usersContext!.activeUser?.surname.slice(0, 1)}
+      {usersContext?.activeUser ? (
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 border-2 border-green-400 bg-green-400 rounded-full flex justify-center items-center font-semibold">
+            {usersContext!.activeUser?.name.slice(0, 1)}
+            {usersContext!.activeUser?.surname.slice(0, 1)}
+          </div>
+          <div>{`${usersContext?.activeUser?.name} ${usersContext?.activeUser?.surname}`}</div>
         </div>
-        <div>{`${usersContext?.activeUser?.name} ${usersContext?.activeUser?.surname}`}</div>
-      </div>
+      ) : (
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 border-2 border-gray-300 bg-gray-300 rounded-full"></div>
+          <div className="w-32 h-4 rounded-lg bg-gray-300"></div>
+        </div>
+      )}
       <textarea
         placeholder="Podziel się myślą ze światem"
         className="max-h-32 rounded-md p-4"
