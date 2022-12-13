@@ -19,6 +19,7 @@ const LoginForm: FC = () => {
     "activeUser",
     null
   );
+  const [session, setSession] = useLocalStorage("session", "");
 
   const {
     register,
@@ -37,6 +38,7 @@ const LoginForm: FC = () => {
         if (loginExist[0].password === data.password) {
           usersContext?.setActiveUser(loginExist[0]);
           setLocalAcitveUser(loginExist[0]);
+          setSession("session_token");
           navigate(routes.home);
         } else {
           setLoginStatus("Błędne hasło");
