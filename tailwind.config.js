@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -11,6 +12,7 @@ module.exports = {
         "day-bg-posts": "#E9F5E8",
         "day-bg-main-posts": "#EFEFEF",
         "modal-overlay": "rgba(0,0,0,0.7)",
+        "navbar-dark-mode": "#101010",
       },
       dropShadow: {
         button: "0px 4px 4px rgba(0, 0, 0, 0.25)",
