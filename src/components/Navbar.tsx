@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu } from "@headlessui/react";
 import { HiMenu } from "react-icons/hi";
 
@@ -30,12 +30,18 @@ const Navbar: FC = () => {
       <div className="hidden grow sm:block">
         {usersContext?.activeUser ? (
           <ul className="flex justify-center items-center gap-8">
-            <Link to={routes.home}>
+            <NavLink
+              to={routes.home}
+              className={({ isActive }) => (isActive ? "nav-link" : "")}
+            >
               <li>Home</li>
-            </Link>
-            <Link to={routes.myProfil}>
+            </NavLink>
+            <NavLink
+              to={routes.myProfil}
+              className={({ isActive }) => (isActive ? "nav-link" : "")}
+            >
               <li>Mój profil</li>
-            </Link>
+            </NavLink>
           </ul>
         ) : null}
       </div>
