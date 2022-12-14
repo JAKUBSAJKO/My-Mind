@@ -19,7 +19,12 @@ const CreatePost: FC<Props> = ({ setOpenModal }) => {
   const usersContext = useContext(UsersContext);
   const [localPosts, setLocalPosts] = useLocalStorage<Post[]>("localPosts", []);
 
-  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>();
 
   const postHandleSubmit: SubmitHandler<Inputs> = (data) => {
     const id = uuidv4();
@@ -69,6 +74,7 @@ const CreatePost: FC<Props> = ({ setOpenModal }) => {
           maxLength: { value: 300, message: "Maksymalnie 300 znaków" },
         })}
       />
+      <p className="self-end text-xs text-red-700">{errors.body?.message}</p>
       <button type="submit" className="max-w-fit self-end">
         <AiOutlineSend className="text-emerald-400 text-xl" />
       </button>

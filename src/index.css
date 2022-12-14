@@ -64,3 +64,7 @@
 .start-card-text {
   @apply text-white text-sm text-center pt-2;
 }
+
+.nav-link {
+  @apply relative sm:after:block sm:after:absolute sm:after:bg-emerald-400 sm:after:h-[2px] sm:after:w-full sm:after:-bottom-1 sm:after:rounded-md;
+}
