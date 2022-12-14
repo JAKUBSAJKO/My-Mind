@@ -5,6 +5,8 @@ import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { User } from "../Interface";
 
+const PATTERN = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
 interface Props {
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
@@ -71,9 +73,10 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
         autoComplete="off"
         {...register("password", {
           required: "Podaj hasło",
-          minLength: {
-            value: 4,
-            message: "Minimalna długość hasła wynosi 4",
+          pattern: {
+            value: PATTERN,
+            message:
+              "Hasło musi zawierać: 1 dużą literę, 1 cyfrę, 1 znak specjalny oraz musi być długości conajmniej 6 znaków.",
           },
         })}
         placeholder="Podaj hasło"
@@ -83,7 +86,7 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
         <p>{errors.name?.message}</p>
         <p>{errors.surname?.message}</p>
         <p>{errors.login?.message}</p>
-        <p>{errors.password?.message}</p>
+        <p className="w-56">{errors.password?.message}</p>
         <p className="mb-4">{signUpStatus}</p>
       </div>
       <input
