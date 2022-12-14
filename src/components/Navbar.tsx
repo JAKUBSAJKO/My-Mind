@@ -1,7 +1,8 @@
-import { FC, useContext } from "react";
+import { FC, SetStateAction, Dispatch, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Menu } from "@headlessui/react";
+import { Menu, Switch } from "@headlessui/react";
 import { HiMenu } from "react-icons/hi";
+import { WiDaySunny, WiNightAltCloudy } from "react-icons/wi";
 
 import { UsersContext } from "../contexts/context";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -9,7 +10,12 @@ import { User } from "../Interface";
 import { routes } from "../routes/routes";
 import Logo from "../assets/images/logo.png";
 
-const Navbar: FC = () => {
+interface Props {
+  isDarkMode: boolean;
+  setIsDarkMode: Dispatch<SetStateAction<boolean>>;
+}
+
+const Navbar: FC<Props> = ({ isDarkMode, setIsDarkMode }) => {
   const navigate = useNavigate();
   const usersContext = useContext(UsersContext);
   const [localAcitveUser, setLocalActiveUser] = useLocalStorage<User | null>(
@@ -25,24 +31,45 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className="w-full px-8 py-4 flex justify-between items-center text-sm shadow-md">
+    <nav className="w-full px-8 py-4 flex justify-between items-center text-sm shadow-md dark:bg-navbar-dark-mode dark:text-neutral-200 dark:shadow-lg dark:shadow-neutral-100">
       <img src={Logo} alt="Logo" width={56} />
       <div className="hidden grow sm:block">
         {usersContext?.activeUser ? (
-          <ul className="flex justify-center items-center gap-8">
-            <NavLink
-              to={routes.home}
-              className={({ isActive }) => (isActive ? "nav-link" : "")}
+          <div className="relative">
+            <ul className="flex justify-center items-center gap-8">
+              <NavLink
+                to={routes.home}
+                className={({ isActive }) => (isActive ? "nav-link" : "")}
+              >
+                <li>Home</li>
+              </NavLink>
+              <NavLink
+                to={routes.myProfil}
+                className={({ isActive }) => (isActive ? "nav-link" : "")}
+              >
+                <li>Mój profil</li>
+              </NavLink>
+            </ul>
+            <Switch
+              checked={isDarkMode}
+              onChange={setIsDarkMode}
+              className={`${
+                isDarkMode ? "bg-emerald-600" : "bg-emerald-400"
+              } absolute right-4 top-1/2 -translate-y-1/2 inline-flex h-8 w-16 items-center rounded-full`}
             >
-              <li>Home</li>
-            </NavLink>
-            <NavLink
-              to={routes.myProfil}
-              className={({ isActive }) => (isActive ? "nav-link" : "")}
-            >
-              <li>Mój profil</li>
-            </NavLink>
-          </ul>
+              <span
+                className={`${
+                  isDarkMode ? "translate-x-[40px]" : "translate-x-1"
+                } h-6 w-6 transform rounded-full bg-white dark:bg-neutral-200 transition flex justify-center items-center`}
+              >
+                {isDarkMode ? (
+                  <WiNightAltCloudy className="text-emerald-900 text-lg" />
+                ) : (
+                  <WiDaySunny className="text-emerald-900 text-lg" />
+                )}
+              </span>
+            </Switch>
+          </div>
         ) : null}
       </div>
       <div className="hidden sm:flex sm:items-center sm:gap-4">
@@ -71,7 +98,7 @@ const Navbar: FC = () => {
         <Menu.Button className="sm:hidden">
           <HiMenu className="text-2xl" />
         </Menu.Button>
-        <Menu.Items className="absolute top-0 right-0 bottom-0 left-0 p-16 bg-green-200 flex flex-col justify-between">
+        <Menu.Items className="absolute top-0 right-0 bottom-0 left-0 p-16 bg-green-200 dark:bg-neutral-800 flex flex-col justify-between">
           <Menu.Item>
             {({ close, active }) => (
               <>

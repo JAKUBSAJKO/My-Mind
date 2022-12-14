@@ -42,15 +42,15 @@
 }
 
 .btn-solid {
-  @apply border-2 border-emerald-400 bg-emerald-400 rounded-lg px-6 py-2 font-semibold text-white;
+  @apply border-2 border-emerald-400 dark:border-emerald-600 bg-emerald-400 dark:bg-emerald-600 rounded-lg px-6 py-2 font-semibold text-white;
 }
 
 .btn-outline {
-  @apply border-2 border-emerald-400 rounded-lg px-6 py-2 font-semibold hover:bg-emerald-400 hover:text-white transition-all hover:duration-500;
+  @apply border-2 border-emerald-400 dark:border-emerald-600 rounded-lg px-6 py-2 font-semibold hover:bg-emerald-400 dark:hover:bg-emerald-600 hover:text-white transition-all hover:duration-500;
 }
 
 .btn-mobile {
-  @apply border-2 border-green-500 rounded-lg px-12 py-4 text-center bg-green-500 text-white text-xs drop-shadow-button;
+  @apply border-2 border-green-500 dark:border-emerald-600 rounded-lg px-12 py-4 text-center bg-green-500 dark:bg-emerald-600 text-white text-xs drop-shadow-button;
 }
 
 .start-card {

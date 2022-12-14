@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Spinner from "./components/Spinner";
@@ -15,12 +15,14 @@ const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
 
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
   return (
     <Router>
       <UsersContextProvider>
-        <div>
-          <Suspense fallback={<Spinner />}>
-            <Navbar />
+        <div className={isDarkMode ? "dark" : ""}>
+          <Suspense fallback={<Spinner isFull />}>
+            <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
             <Routes>
               <Route path={routes.start} element={<Start />} />
               <Route path={routes.home} element={<Homepage />} />

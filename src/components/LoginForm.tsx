@@ -58,14 +58,14 @@ const LoginForm: FC = () => {
         type="text"
         {...register("login", { required: "Login jest wymagany" })}
         placeholder="Nazwa użytkownika"
-        className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+        className="h-12 w-64 rounded-lg bg-green-100 dark:bg-neutral-700 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="password"
         autoComplete="off"
         {...register("password", { required: "Hasło jest wymagany" })}
         placeholder="Hasło"
-        className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-6"
+        className="h-12 w-64 rounded-lg bg-green-100 dark:bg-neutral-700 text-xs placeholder-green-500 px-4 focus:border-none mb-6"
       />
       <div className="flex flex-col mx-4 text-red-500 text-xs">
         <p>{errors.login?.message}</p>
@@ -75,7 +75,7 @@ const LoginForm: FC = () => {
       <input
         type="submit"
         value="Zaloguj się"
-        className="border-2 border-green-500 rounded-lg mt-6 py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
+        className="border-2 border-green-500 dark:border-green-600 rounded-lg mt-6 py-4 text-center bg-green-500 dark:bg-green-600 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
       />
     </form>
   );

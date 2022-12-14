@@ -50,11 +50,11 @@ const CreatePost: FC<Props> = ({ setOpenModal }) => {
   return (
     <form
       onSubmit={handleSubmit(postHandleSubmit)}
-      className="w-full bg-gray-200 px-8 py-4 flex flex-col gap-4 md:shadow-lg md:rounded-lg"
+      className="w-full bg-gray-200 dark:bg-neutral-700 dark:text-neutral-200 px-8 py-4 flex flex-col gap-4 md:shadow-lg md:rounded-lg"
     >
       {usersContext?.activeUser ? (
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 border-2 border-green-400 bg-green-400 rounded-full flex justify-center items-center font-semibold">
+          <div className="w-10 h-10 border-2 border-green-400 bg-green-400 rounded-full flex justify-center items-center font-semibold dark:text-white">
             {usersContext!.activeUser?.name.slice(0, 1)}
             {usersContext!.activeUser?.surname.slice(0, 1)}
           </div>
@@ -68,7 +68,7 @@ const CreatePost: FC<Props> = ({ setOpenModal }) => {
       )}
       <textarea
         placeholder="Podziel się myślą ze światem"
-        className="max-h-32 rounded-md p-4"
+        className="max-h-32 rounded-md p-4 dark:bg-neutral-600 dark:text-neutral-200"
         {...register("body", {
           required: "Tekst jest wymagany",
           maxLength: { value: 300, message: "Maksymalnie 300 znaków" },

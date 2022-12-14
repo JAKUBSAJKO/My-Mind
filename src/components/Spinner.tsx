@@ -1,9 +1,19 @@
 import { FC } from "react";
 import { CircleLoader } from "react-spinners";
 
-const Spinner: FC = () => {
+interface Props {
+  isFull?: boolean;
+}
+
+const Spinner: FC<Props> = ({ isFull = false }) => {
   return (
-    <div className="w-full h-[calc(100vh-82.5px)] flex justify-center items-center">
+    <div
+      className={
+        isFull
+          ? "w-full flex justify-center items-center dark:bg-neutral-900 h-screen"
+          : "w-full flex justify-center items-center dark:bg-neutral-900 h-[calc(100vh-82.5px)]"
+      }
+    >
       <CircleLoader color="#22c55e" />
     </div>
   );

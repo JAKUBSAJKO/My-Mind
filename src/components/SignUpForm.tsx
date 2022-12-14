@@ -52,21 +52,21 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
         autoComplete="off"
         {...register("name", { required: "Podaj imię" })}
         placeholder="Podaj imię"
-        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+        className="h-10 w-64 rounded-lg bg-green-100 dark:bg-neutral-700 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="text"
         autoComplete="off"
         {...register("surname", { required: "Podaj nazwisko" })}
         placeholder="Podaj nazwisko"
-        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+        className="h-10 w-64 rounded-lg bg-green-100 dark:bg-neutral-700 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="text"
         autoComplete="off"
         {...register("login", { required: "Podaj login" })}
         placeholder="Stwórz login"
-        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+        className="h-10 w-64 rounded-lg bg-green-100 dark:bg-neutral-700 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <input
         type="password"
@@ -80,7 +80,7 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
           },
         })}
         placeholder="Podaj hasło"
-        className="h-10 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
+        className="h-10 w-64 rounded-lg bg-green-100 dark:bg-neutral-700 text-xs placeholder-green-500 px-4 focus:border-none mb-4"
       />
       <div className="flex flex-col mx-4 text-red-500 text-xs">
         <p>{errors.name?.message}</p>
@@ -92,7 +92,7 @@ const SignUpForm: FC<Props> = ({ setOpenModal }) => {
       <input
         type="submit"
         value="Zarejestruj się"
-        className="w-64 border-2 border-green-500 rounded-lg py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
+        className="w-64 border-2 border-green-500 dark:border-green-600 rounded-lg py-4 text-center bg-green-500 dark:bg-green-600  text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
       />
     </form>
   );
