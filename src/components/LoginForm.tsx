@@ -65,16 +65,18 @@ const LoginForm: FC = () => {
         autoComplete="off"
         {...register("password", { required: "Hasło jest wymagany" })}
         placeholder="Hasło"
-        className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-12"
+        className="h-12 w-64 rounded-lg bg-green-100 text-xs placeholder-green-500 px-4 focus:border-none mb-6"
       />
-      <p>{errors.login?.message}</p>
-      <p>{errors.password?.message}</p>
+      <div className="flex flex-col mx-4 text-red-500 text-xs">
+        <p>{errors.login?.message}</p>
+        <p>{errors.password?.message}</p>
+        <p>{loginStatus}</p>
+      </div>
       <input
         type="submit"
         value="Zaloguj się"
-        className="border-2 border-green-500 rounded-lg py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
+        className="border-2 border-green-500 rounded-lg mt-6 py-4 text-center bg-green-500 text-white text-xs drop-shadow-button cursor-pointer transition-all hover:scale-110"
       />
-      {<p>{loginStatus}</p>}
     </form>
   );
 };
