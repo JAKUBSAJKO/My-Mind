@@ -32,7 +32,7 @@ const MyProfil: FC = () => {
                   {usersContext!.activeUser?.name.slice(0, 1)}
                   {usersContext!.activeUser?.surname.slice(0, 1)}
                 </div>
-                <h1 className="text-base font-semibold sm:text-xl">
+                <h1 className="text-base font-semibold sm:text-xl w-5/6 text-center">
                   {`${usersContext?.activeUser?.name} ${usersContext?.activeUser?.surname}`}
                 </h1>
               </div>
