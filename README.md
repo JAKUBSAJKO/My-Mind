@@ -1,46 +1,26 @@
-# Getting Started with Create React App
+# My mind
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My mind is a application where you can create account and share your minds with people.
 
-## Available Scripts
+The application is only front end project so all data your create will be keep in local storage in your website.
 
-In the project directory, you can run:
+Why I did this app?
+I wanted to do something with react-hook-form to know this library.
 
-### `npm start`
+## Technology
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React version: 18.2.0
+- Typescript version: 4.9.3
+- Tailwind version: 3.2.4
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installed packages
 
-### `npm test`
+- React-router-dom version: 6.4.3
+- React-hook-form version: 7.39.5
+- React-icons version: 4.7.1
+- React-spinners version: 0.13.7
+- @headlessui/react version: 1.7.5
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deploy
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application delpoy on Netlify
