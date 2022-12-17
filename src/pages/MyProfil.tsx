@@ -24,7 +24,7 @@ const MyProfil: FC = () => {
   return (
     <div className="bg-day-bg-posts dark:bg-neutral-900 dark:text-neutral-200">
       {session ? (
-        <div className="py-8 flex flex-col justify-center items-center gap-8 sm:px-12 md:min-h-[calc(100vh-92px)] md:flex-row md:px-8 md:gap-4 lg:max-w-3xl lg:mx-auto">
+        <div className="py-8 flex flex-col justify-center items-center gap-8 sm:px-12 min-h-[calc(100vh-92px)] md:flex-row md:px-8 md:gap-4 lg:max-w-3xl lg:mx-auto">
           {usersContext?.activeUser ? (
             <>
               <div className="basis-1/3 bg-zinc-300 dark:bg-neutral-800 px-16 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-4 sm:px-24 md:h-96 md:p-0">

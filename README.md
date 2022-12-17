@@ -1,8 +1,10 @@
 # My mind
 
+Link to the website -> https://my-mind-jakubsajko.netlify.app
+
 My mind is a application where you can create account and share your minds with people.
 
-The application is only front end project so all data your create will be keep in local storage in your website.
+The application is only a front-end project, so all the data you create will be stored in local storage in your browser.
 
 Why I did this app?
 I wanted to do something with react-hook-form to know this library.
